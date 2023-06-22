@@ -1,0 +1,8 @@
+projection;
+
+define behavior for ZSTUDENT_C alias STUDENT_C
+{
+  use create;
+  use update;
+  use delete;
+}

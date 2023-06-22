@@ -1,0 +1,12 @@
+managed; // implementation in class zbp_cdsv_enroll_table unique;
+
+define behavior for ZCDSV_ENROLL_TABLE alias ENROLL
+persistent table ZSTUDENT_ENROLL
+lock master
+//authorization master ( instance )
+//etag master <field_name>
+{
+  create;
+  update;
+  delete;
+}

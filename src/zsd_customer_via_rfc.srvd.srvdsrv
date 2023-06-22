@@ -1,0 +1,4 @@
+@EndUserText.label: 'Service definition for customer via RFC'
+define service ZSD_CUSTOMER_VIA_RFC {
+  expose ZCE_CUST_VIA_RFC;
+}

@@ -1,0 +1,57 @@
+managed;
+with draft;
+
+define behavior for ZCDSV_COURSED
+persistent table ZCOURSE_D
+draft table ZCOURSED
+lock master
+//authorization master ( instance )
+etag master ChangedAt
+{
+  create;
+  update;
+  delete;
+  association _Enroll { create; }
+
+  field (numbering : managed, readonly) Courseuuid;
+
+  mapping for zcourse_d
+  { Courseuuid = courseuuid;
+    Courseid = courseid;
+    Coursename = coursename;
+    Virtualpossible = virtualpossible;
+    Ishandson = ishandson;
+    Totalmarks = totalmarks;
+    Cutofmarks = cutofmarks;
+    StartDate = start_date;
+    EndDate = end_date;
+    Iscomplete = iscomplete;
+    Capacity = capacity;
+    LastChangedBy = last_changed_by;
+    LastChangedAt = last_changed_at;
+    ChangedAt = changed_at; }
+}
+
+define behavior for ZCDSV_ENROLLD
+persistent table ZENROLL_D
+draft table ZENROLLD
+lock dependent by _Course
+//authorization dependent by <association>
+etag master LastChangedAt
+{
+  update;
+  delete;
+  association _Course { }
+
+  field (readonly) Courseuuid;
+  field (numbering : managed, readonly) EnrollUuid;
+
+  mapping for zenroll_d
+  { EnrollUuid = enroll_uuid;
+    Courseuuid = courseuuid;
+    Studentid = studentid;
+    Status = status;
+    Marks = marks;
+    LastChangedBy =last_changed_by;
+    LastChangedAt = last_changed_at; }
+}

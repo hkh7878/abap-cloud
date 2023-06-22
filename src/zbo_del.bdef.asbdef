@@ -1,0 +1,63 @@
+//implementation unmanaged ;
+unmanaged implementation in class zbp_bo_del unique;
+
+define behavior for ZBO_DEL alias Delivery
+
+lock master
+
+//implementation in class zbp_bo_del unique
+
+{
+
+
+field ( mandatory ) vbeln , vstel, vkorg, lfart , bzrik, vsbed, vsart, kunag , kunnr, lddat, lfdat,
+                    kodat, lprio, lstel ,fkdat , route , wadat, kostk ;
+  create;
+  update;
+  delete;
+
+  action set_status_del  result [1] $self;
+  association _item { create; }
+
+ mapping for ZLIKP
+  {
+    vbeln = vbeln;
+    vstel = vstel;
+    vkorg = vkorg;
+    lfart = lfart;
+    bzrik = bzrik;
+    vsbed = vsbed;
+    vsart = vsart;
+    kunag = kunag;
+    kunnr = kunnr;
+    lddat = lddat;
+    lfdat = lfdat;
+    kodat = kodat;
+    lprio = lprio;
+    lstel = lstel;
+    fkdat = fkdat;
+    route = route;
+    wadat = wadat;
+    kostk = kostk;
+  }
+}
+
+define behavior for ZBO_ITEM alias item
+   implementation in class zbp_bo_ietm unique
+
+{
+  field ( mandatory ) vbeln, posnr, matnr , lfimg, meins ;
+
+  update;
+  delete;
+  association _del;
+
+  mapping for ZLIPS
+  {
+    vbeln = vbeln;
+    posnr = posnr;
+    matnr = matnr;
+    lfimg = lfimg;
+    meins = meins;
+  }
+}

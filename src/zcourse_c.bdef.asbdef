@@ -1,0 +1,8 @@
+projection;
+
+define behavior for ZCOURSE_C alias COURSE_C
+{
+  use create;
+  use update;
+  use delete;
+}

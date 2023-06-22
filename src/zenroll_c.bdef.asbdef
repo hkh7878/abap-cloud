@@ -1,0 +1,8 @@
+projection;
+
+define behavior for ZENROLL_C alias ENROLL_C
+{
+  use create;
+  use update;
+  use delete;
+}

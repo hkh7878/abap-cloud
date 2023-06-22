@@ -1,0 +1,13 @@
+managed implementation in class zbp_cds_aufm unique;
+
+define behavior for ZCDS_AUFM //alias <alias_name>
+persistent table ZAUFM
+lock master
+//authorization master ( instance )
+//etag master <field_name>
+{
+  validation validateAufm on save { field mblnr , mjahr , zeile; }
+  create;
+  update;
+  delete;
+}
